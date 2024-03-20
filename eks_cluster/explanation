@@ -1,18 +1,1 @@
-using two module : ready vpc and eks
-
-
-instead i build vpc then pub subnets and provate subnets
-
-
-for pub
-
-create resource of ige then resource of default route table and associate
-
-for private 
-create natgw(for vpcs conn and internet towards towards outside
-
-
-then ...
-
-
-here;'s ready modules
+using two module : VPC&EKS
