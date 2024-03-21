@@ -7,10 +7,6 @@ provider "kubernetes" {
   data "aws_eks_cluster_auth" "myapp1-cluster" {
     name = module.eks.cluster_name
   }
- output "cluster_id" {
-  description = "The ID of the cluster."
-  value       = module.eks.cluster_name
-}
 module "eks" {
    source  = "terraform-aws-modules/eks/aws"
    version = "20.8.3"
