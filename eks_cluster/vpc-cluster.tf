@@ -29,7 +29,7 @@ module "myapp-vpc" {
  
   public_subnet_tags = {
     "kubernetes.io/cluster/myapp-eks-cluster" = "shared"
-    "kubernetes.io/roles/elb" = 1
+    "kubernetes.io/roles/elb" = 1 //elb in public subnet of the cluster
   }
   private_subnet_tags = {
     "kubernetes.io/cluster/myapp-eks-cluster" = "shared"
