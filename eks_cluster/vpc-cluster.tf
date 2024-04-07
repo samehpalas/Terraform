@@ -6,7 +6,7 @@ provider "aws" {
 
 data "aws_availability_zones" "azs" {}
 
-module "${var.name_prefix}-vpc" {
+module "my-vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.6.0"
 
