@@ -6,11 +6,11 @@ provider "aws" {
 
 data "aws_availability_zones" "azs" {}
 
-module "myapp-vpc" {
+module "${var.name_prefix}-vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.6.0"
 
-  name = "myapp-vpc"
+  name = "${var.name_prefix}-vpc"
   cidr = var.vpc_cidr_block
   private_subnets = var.private_subnet_cidr_blocks
   public_subnets = var.public_subnet_cidr_blocks
