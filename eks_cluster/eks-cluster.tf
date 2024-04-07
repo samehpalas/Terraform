@@ -80,5 +80,4 @@ developer_user_map_users = [
     }
   ]
 }
-}
-}
+
