@@ -56,13 +56,13 @@ module "eks" {
     }
   }
 # render Admin & Developer users list with the structure required by EKS module
-locals {
-  cluster_name = "${var.name_prefix}-${var.environment}"
+#locals {
+ # cluster_name = "${var.name_prefix}-${var.environment}"
 
-  autoscaler_service_account_namespace = "kube-system"
-  autoscaler_service_account_name      = "cluster-autoscaler-aws"
+  #autoscaler_service_account_namespace = "kube-system"
+  #autoscaler_service_account_name      = "cluster-autoscaler-aws"
 
-  admin_user_map_users = [
+admin_user_map_users = [
     for admin_user in var.admin_users :
     {
       userarn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/${admin_user}"
@@ -71,7 +71,7 @@ locals {
     }
   ]
 
-  developer_user_map_users = [
+developer_user_map_users = [
     for developer_user in var.developer_users :
     {
       userarn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/${developer_user}"
