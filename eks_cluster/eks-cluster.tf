@@ -81,6 +81,3 @@ data "aws_iam_user" "example" {
       }
     }
   }
-
-}
-
