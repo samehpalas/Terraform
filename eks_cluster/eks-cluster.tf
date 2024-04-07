@@ -35,11 +35,11 @@ module "eks" {
   }*/
   
   # EKS Managed Node Group(s)
-  eks_managed_node_group_defaults = {
+   eks_managed_node_group_defaults = {
     ami_type = "AL2_x86_64"
   }
 
-  eks_managed_node_groups = {
+   eks_managed_node_groups = {
     system = {
       min_size     = 1
       max_size     = 3
@@ -57,12 +57,12 @@ module "eks" {
   }
   # Cluster access entry
   # To add the current caller identity as an administrator
-  enable_cluster_creator_admin_permissions = true
+   enable_cluster_creator_admin_permissions = true
 
-  data "aws_iam_user" "example" {
-   user_name = "jenkins
+   data "aws_iam_user" "example" {
+    user_name = "jenkins
   }
-  access_entries = {
+   access_entries = {
     # One access entry with a policy associated
     example = {
       kubernetes_groups = []
