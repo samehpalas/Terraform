@@ -10,15 +10,10 @@ variable "asg_sys_instance_types" {
   description = "List of EC2 instance machine types to be used in EKS for the system workload."
 }
 
-variable "asg_dev_instance_types" {
-  type        = list(string)
-  default     = ["t3a.medium"]
-  description = "List of EC2 instance machine types to be used in EKS for development workload."
-}
 
 variable "name_prefix" {
   type        = string
-  default     = "app2-eks"
+  default     = "app3-eks"
   description = "Prefix to be used on each infrastructure object Name created in AWS."
 }
 
