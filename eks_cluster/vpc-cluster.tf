@@ -15,15 +15,15 @@ module "vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
+    "kubernetes.io/cluster/${var.name_prefix}" = "shared"
   }
  
   public_subnet_tags = {
-    "kubernetes.io/cluster/${var.prefix}" = "shared"
+    "kubernetes.io/cluster/${var.name_prefix}" = "shared"
     "kubernetes.io/roles/elb" = 1 //elb in public subnet of the cluster
   }
   private_subnet_tags = {
-    "kubernetes.io/cluster/${var.prefix}" = "shared"
+    "kubernetes.io/cluster/${var.name_prefix}" = "shared"
     "kubernetes.io/roles/internal-elb" = 1
   }
 }
