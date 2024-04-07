@@ -1,3 +1,9 @@
+variable vpc_cidr_block {}
+
+variable private_subnet_cidr_blocks {}
+
+variable public_subnet_cidr_blocks {}
+
 variable "asg_sys_instance_types" {
   type        = list(string)
   default     = ["t3a.medium"]
