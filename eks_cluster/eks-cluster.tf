@@ -1,9 +1,11 @@
 
 data "aws_eks_cluster" "my-cluster" {
   name = module.eks.cluster_name
+  depends_on = [module.eks.cluster_name]
 }
   data "aws_eks_cluster_auth" "my-cluster" {
     name = module.eks.cluster_name
+    depends_on = [module.eks.cluster_name]
   }
 data "aws_caller_identity" "current" {} # used for accessing Account ID and ARN
 data "aws_iam_user" "example" {
