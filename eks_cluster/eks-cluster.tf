@@ -47,9 +47,9 @@ module "eks" {
       labels = {
         Environment = "test"
       }
-      tags = {
-        Terraform   = "true"
-        Environment = "test"
+      #tags = {
+       # Terraform   = "true"
+        #Environment = "test"
       }
     }
   }
