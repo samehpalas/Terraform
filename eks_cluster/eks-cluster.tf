@@ -1,11 +1,14 @@
 provider "kubernetes" {
   config_paths = "false"
-  host                   = module.eks.cluster_endpoint
-  cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
-  token = data.aws_eks_cluster_auth.myapp1-cluster.token
+  host                   =  data.aws_eks_cluster.myapp1-cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.myapp1-cluster.certificate_authority.0.data)
+  token = data.aws_eks_cluster_auth.myapp1-cluster.token   
+}
+data "aws_eks_cluster" "myapp1-cluster" {
+  name = module.eks.cluster_id
 }
   data "aws_eks_cluster_auth" "myapp1-cluster" {
-    name = module.eks.cluster_name
+    name = module.eks.cluster_id
   }
 module "eks" {
    source  = "terraform-aws-modules/eks/aws"
@@ -29,3 +32,25 @@ module "eks" {
     }
   }
 }   
+  # EKS Managed Node Group(s)
+ eks_managed_node_group_defaults = {
+    ami_type = "AL2_x86_64"
+  }
+
+  eks_managed_node_groups = {
+    system = {
+      min_size     = 1
+      max_size     = 3
+      desired_size = 1
+
+      instance_types = var.asg_sys_instance_types
+      labels = {
+        Environment = "test"
+      }
+      tags = {
+        Terraform   = "true"
+        Environment = "test"
+      }
+    }
+  }
+}
