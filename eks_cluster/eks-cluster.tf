@@ -59,6 +59,10 @@ module "eks" {
   # To add the current caller identity as an administrator
   enable_cluster_creator_admin_permissions = true
 
+data "aws_iam_user" "example" {
+  user_name = "jenkins
+}
+
   access_entries = {
     # One access entry with a policy associated
     example = {
@@ -68,6 +72,7 @@ module "eks" {
       policy_associations = {
         example = {
           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
+
           access_scope = {
             namespaces = ["default"]
             type       = "namespace"
