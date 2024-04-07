@@ -55,33 +55,27 @@ module "eks" {
      # }
     }
   }
-data "aws_caller_identity" "current" {} # used for accessing Account ID and ARN
+  # Cluster access entry
+  # To add the current caller identity as an administrator
+  enable_cluster_creator_admin_permissions = true
 
-# render Admin & Developer users list with the structure required by EKS module
-locals {
-  cluster_name = "${var.name_prefix}-${var.environment}"
+  access_entries = {
+    # One access entry with a policy associated
+    example = {
+      kubernetes_groups = []
+      principal_arn     = "arn:aws:iam::123456789012:role/something"
 
-  autoscaler_service_account_namespace = "kube-system"
-  autoscaler_service_account_name      = "cluster-autoscaler-aws"
-
-  admin_user_map_users = [
-    for admin_user in var.admin_users :
-    {
-      userarn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/${admin_user}"
-      username = admin_user
-      groups   = ["system:masters"]
+      policy_associations = {
+        example = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
+          access_scope = {
+            namespaces = ["default"]
+            type       = "namespace"
+          }
+        }
+      }
     }
-  ]
-
-  developer_user_map_users = [
-    for developer_user in var.developer_users :
-    {
-      userarn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/${developer_user}"
-      username = developer_user
-      groups   = ["${var.name_prefix}-developers"]
-    }
-  ]
-}
+  }
 
 }
 
