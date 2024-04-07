@@ -50,7 +50,7 @@ module "eks" {
       #tags = {
        # Terraform   = "true"
         #Environment = "test"
-      }
+     # }
     }
   }
 }
