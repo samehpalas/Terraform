@@ -15,3 +15,14 @@ variable "asg_dev_instance_types" {
   default     = ["t3a.medium"]
   description = "List of EC2 instance machine types to be used in EKS for development workload."
 }
+
+variable "name_prefix" {
+  type        = string
+  default     = "cluster-1"
+  description = "Prefix to be used on each infrastructure object Name created in AWS."
+}
+
+variable "environment" {
+  type    = string
+  default = "test"
+}
