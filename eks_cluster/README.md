@@ -5,11 +5,12 @@ Then:
  - terraform init
  - terraform Plan
  - terraform apply --auto-approve
-- Each time after you finish, update kubeconfig by the following command ;aws eks update-kubeconfig --region <region-name> --name <cluster name>
+- Each time after you finish, update kubeconfig by the following command ;aws eks update-kubeconfig --region <region-name> --name<cluster name>
 
 
-method2 to provision EKS using cli is using eksctl
--------------------------------------------------- #simple to launch, difficult for cleanning up
+Method2 to provision EKS using cli is using eksctl
+-------------------------------------------------- 
+#simple to launch, difficult for cleanning up
 - aws configure
 - eksctl create cluster --name demo-cluster --version 1.29 --region us-east-1 --nodegroup-name demo-noda1 --node-type t2.micro  --nodes 1 --nodes-min 1 --nodes-max 3
 
