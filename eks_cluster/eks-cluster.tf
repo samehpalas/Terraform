@@ -22,7 +22,7 @@ module "eks" {
      environment = "development"
      application = "myapp"
    }
-   eks_managed_node_groups = {
+   /*eks_managed_node_groups = {
     example = {
       min_size     = 2
       max_size     = 4
@@ -30,8 +30,8 @@ module "eks" {
 
       instance_types = ["t2.large"]
     }
-  }
-}   
+  }*/
+  
   # EKS Managed Node Group(s)
  eks_managed_node_group_defaults = {
     ami_type = "AL2_x86_64"
@@ -53,4 +53,3 @@ module "eks" {
       }
     }
   }
-}
