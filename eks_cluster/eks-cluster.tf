@@ -1,13 +1,13 @@
 provider "kubernetes" {
   config_paths = "false"
-  host                   =  data.aws_eks_cluster.myapp1-cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.myapp1-cluster.certificate_authority.0.data)
-  token = data.aws_eks_cluster_auth.myapp1-cluster.token   
+  host                   =  data.aws_eks_cluster.${var.name_prefix}-cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.${var.name_prefix}-cluster.certificate_authority.0.data)
+  token = data.aws_eks_cluster_auth.${var.name_prefix}-cluster.token   
 }
-data "aws_eks_cluster" "myapp1-cluster" {
+data "aws_eks_cluster" "${var.name_prefix}-cluster" {
   name = module.eks.cluster_name
 }
-  data "aws_eks_cluster_auth" "myapp1-cluster" {
+  data "aws_eks_cluster_auth" "${var.name_prefix}-cluster" {
     name = module.eks.cluster_name
   }
 data "aws_caller_identity" "current" {} # used for accessing Account ID and ARN
@@ -18,9 +18,9 @@ data "aws_iam_user" "example" {
 module "eks" {
    source  = "terraform-aws-modules/eks/aws"
    version = "20.8.3"
-   cluster_name = "myapp1-cluster"
+   cluster_name = "${var.name_prefix}-cluster"
    cluster_version = "1.29"
-   subnet_ids = module.myapp-vpc.private_subnets
+   subnet_ids = module.${var.name_prefix}-vpc.private_subnets
    vpc_id =  module.myapp-vpc.vpc_id
 
    tags = {
