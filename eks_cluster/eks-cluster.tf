@@ -11,6 +11,9 @@ data "aws_eks_cluster" "myapp1-cluster" {
     name = module.eks.cluster_name
   }
 data "aws_caller_identity" "current" {} # used for accessing Account ID and ARN
+data "aws_iam_user" "example" {
+    user_name = "jenkins"
+  }
 
 module "eks" {
    source  = "terraform-aws-modules/eks/aws"
@@ -59,14 +62,12 @@ module "eks" {
   # To add the current caller identity as an administrator
    enable_cluster_creator_admin_permissions = true
 
-   data "aws_iam_user" "example" {
-    user_name = "jenkins"
-  }
+
    access_entries = {
     # One access entry with a policy associated
     example = {
       kubernetes_groups = []
-      principal_arn     = "arn:aws:iam::123456789012:role/something"
+      principal_arn     = data.aws_iam_user.example.arn
 
       policy_associations = {
         example = {
