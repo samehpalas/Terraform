@@ -18,7 +18,7 @@ variable "asg_dev_instance_types" {
 
 variable "name_prefix" {
   type        = string
-  default     = "cluster-1"
+  default     = "app2-eks"
   description = "Prefix to be used on each infrastructure object Name created in AWS."
 }
 
