@@ -11,3 +11,7 @@ eksctl create nodegroup \
   --nodes 2 \
   --nodes-min 2 \
   --nodes-max 4 
+
+Kubeconfig file will be created automaically in eksctl by cloudformation help
+------------------
+in case EKS provisioned by terrafom, run update kubeconfig command;aws eks update-kubeconfig --region <region-name> --name <cluster name>
