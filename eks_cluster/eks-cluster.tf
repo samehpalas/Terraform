@@ -20,8 +20,8 @@ module "eks" {
    version = "20.8.3"
    cluster_name = "${var.name_prefix}"
    cluster_version = "1.29"
-   subnet_ids = module.${var.name_prefix}-vpc.private_subnets
-   vpc_id =  module.myapp-vpc.vpc_id
+   subnet_ids = module.my-vpc.private_subnets
+   vpc_id =  module.my-vpc.vpc_id
 
    tags = {
      environment = "development"
